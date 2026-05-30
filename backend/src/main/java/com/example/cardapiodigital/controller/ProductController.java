@@ -1,7 +1,6 @@
 package com.example.cardapiodigital.controller;
 
 import com.example.cardapiodigital.dto.ProductDto;
-import com.example.cardapiodigital.service.CategoryService;
 import com.example.cardapiodigital.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +11,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/produtos")
 public class ProductController {
+    
     private final ProductService productService;
-    private final CategoryService categoryService;
 
-    public ProductController(ProductService productService, CategoryService categoryService) {
+    // Construtor atualizado apenas com o que é usado
+    public ProductController(ProductService productService) {
         this.productService = productService;
-        this.categoryService = categoryService;
     }
 
     @GetMapping
