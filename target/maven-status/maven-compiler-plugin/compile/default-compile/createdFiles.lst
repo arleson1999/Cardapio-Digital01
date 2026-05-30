@@ -1,0 +1,14 @@
+com\example\cardapiodigital\controller\OrderController$OrderRequest.class
+com\example\cardapiodigital\controller\MenuItemController.class
+com\example\cardapiodigital\controller\OrderController$OrderItemRequest.class
+com\example\cardapiodigital\controller\OrderController.class
+com\example\cardapiodigital\model\OrderItem.class
+com\example\cardapiodigital\model\Category.class
+com\example\cardapiodigital\repository\MenuItemRepository.class
+com\example\cardapiodigital\bootstrap\DataLoader.class
+com\example\cardapiodigital\model\Order.class
+com\example\cardapiodigital\controller\CategoryController.class
+com\example\cardapiodigital\repository\CategoryRepository.class
+com\example\cardapiodigital\model\MenuItem.class
+com\example\cardapiodigital\repository\OrderRepository.class
+com\example\cardapiodigital\CardapioDigitalApplication.class

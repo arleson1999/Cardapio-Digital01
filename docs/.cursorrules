@@ -1,0 +1,11 @@
+- Utilizar Java 21
+- Utilizar Spring Boot 3.x
+- Seguir padrão REST
+- Controllers sem regra de negócio
+- Utilizar camada Service
+- Utilizar DTOs
+- Validar payloads
+- Frontend sem frameworks
+- Utilizar Conventional Commits
+- Código limpo e organizado
+- Documentar decisões arquiteturais
