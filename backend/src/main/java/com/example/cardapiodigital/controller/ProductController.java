@@ -8,16 +8,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
-@RequestMapping("/api/produtos")
+@RequestMapping("/api/menu") // <-- ALTERE DE "/api/produtos" PARA "/api/menu"
 public class ProductController {
     
     private final ProductService productService;
 
-    // Construtor atualizado apenas com o que é usado
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
+
+    // O resto do código continua igualzinho...
 
     @GetMapping
     public List<ProductDto> listProducts() {
