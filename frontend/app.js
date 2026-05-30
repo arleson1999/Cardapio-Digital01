@@ -1,5 +1,5 @@
 const apiBase = "/api/produtos";
-const ordersBase = "/api/pedidos";
+const ordersBase = "http://localhost:8080/api/orders";
 const menuList = document.getElementById("menu-list");
 const refreshButton = document.getElementById("refresh-button");
 const categoriesContainer = document.getElementById("categories");
@@ -226,9 +226,10 @@ finalizeOrderButton.addEventListener("click", async () => {
 
   const customerName = prompt("Nome do cliente:", "Cliente");
   if (customerName === null) {
-    return;
+    return; // Cancela se o usuário fechar o prompt
   }
 
+  // Monta o payload exatamente como sua classe Java espera receber
   const order = {
     customerName: customerName.trim() || "Cliente",
     items: cart.map((item) => ({
@@ -241,20 +242,29 @@ finalizeOrderButton.addEventListener("click", async () => {
     })),
   };
 
-  const response = await fetch(ordersBase, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(order),
-  });
+  try {
+    const response = await fetch(ordersBase, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(order),
+    });
 
-  if (!response.ok) {
-    alert("Erro ao finalizar o pedido.");
-    return;
+    if (!response.ok) {
+      throw new Error("Erro na resposta do servidor");
+    }
+
+    const pedidoSalvo = await response.json();
+
+    // Feedback profissional contendo o número do pedido gerado pelo PostgreSQL
+    alert(`Pedido nº ${pedidoSalvo.id} finalizado com sucesso!`);
+
+    // Zera o estado do carrinho no JavaScript e renderiza a tela limpa
+    cart = [];
+    renderCart();
+  } catch (error) {
+    console.error("Erro ao enviar pedido:", error);
+    alert("Erro ao finalizar o pedido. Verifique se o servidor está ativo.");
   }
-
-  alert("Pedido finalizado com sucesso!");
-  cart = [];
-  renderCart();
 });
 
 refreshButton.addEventListener("click", loadMenu);
